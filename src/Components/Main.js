@@ -6,16 +6,14 @@ const Main = () => {
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
 
-  console.log(input);
-  console.log(todos, "todos");
-
   const submit = () => {
-    const newTodos = [...todos];
-    newTodos.push({ id: Math.random() * 10, title: input });
-    console.log(newTodos);
-    setTodos(newTodos);
-    setInput("");
-
+    if (input !== "") {
+      const newTodos = [...todos];
+      newTodos.push({ id: Math.random() * 10, title: input });
+      console.log(newTodos);
+      setTodos(newTodos);
+      setInput("");
+    }
     console.log(todos);
   };
 
