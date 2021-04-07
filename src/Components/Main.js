@@ -6,19 +6,17 @@ const Main = () => {
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
 
-  const inputChange = (event) => {
-    setInput({
-      input: event.target.value,
-    });
-  };
+  console.log(input);
+  console.log(todos, "todos");
 
   const submit = () => {
-    if (input !== "") {
-      setTodos({
-        todos: [input, ...todos]
-      });
-      setInput({input: ""})
-    }
+    const newTodos = [...todos];
+    newTodos.push({ id: Math.random() * 10, title: input });
+    console.log(newTodos);
+    setTodos(newTodos);
+    setInput("");
+
+    console.log(todos);
   };
 
   return (
@@ -26,11 +24,13 @@ const Main = () => {
       <InputForm
         submit={submit}
         inputValue={input}
-        change={inputChange}
+        change={(e) => setInput(e.target.vlaue)}
       />
-      <ol>{todos.map((todo, index) => (
-            <li key={index}>{todo}</li>
-          ))}</ol>
+      <ol>
+        {todos.map((todo) => (
+          <li key={todo.id}>{todo.title}</li>
+        ))}
+      </ol>
     </div>
   );
 };
